@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: grey;
+    justify-content: space-between;
+}
+
+.Zagolovok {
+    margin-left: 10px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 500;
+    align-self: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.avtor {
+    margin-top: 20px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 100;
+    align-self: center;
+    font-size: large;
+    margin-right: 20px;
+    color: white;
+}
+
+.main {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalWindow{
+    position: absolute;
+    visibility: hidden;
+    z-index: 9999;
+}
