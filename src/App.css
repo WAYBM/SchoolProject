@@ -70,3 +70,9 @@
     cursor: default;
     padding: 40px 20px;
 }
+.nahuietovse{
+    position:relative;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+}
