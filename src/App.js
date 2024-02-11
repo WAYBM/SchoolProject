@@ -6,28 +6,26 @@ import engine from './engine.gif'
 import regulator from './regulator.png'
 import porsche from './porcshe.jpg'
 import krezkopf from './krezkopf.gif'
+import papiengine from './Pengine.gif'
+import denpapen from './DenPapen.jpg'
 
 function App() {
   const [displ,setdispl] = useState('none')
   const [info,setinfo] = useState('')
-  const [check, setcheck] = useState(1)
   const [head, sethead] = useState('')
   const [img,setimg] = useState(wheelI)
-  const [move, setmove] = useState(160)
 
-  
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     if (move < 110){
-  //       setcheck(1.5)
-  //     }else if(move > 240){
-  //       setcheck(-1.5)
-  //     }
-  //     setmove(prev=>prev+check)
-  //   }, 1)
-    
-  //   return () => clearInterval(timer)
-  // })
+  const style3 = {
+    alignSelf:'center',
+    overflow:'hidden',
+    display:'flex',
+    justifyItems:'center',
+    alignItems:'center',
+    flexDirection:'column',
+    border:'dashed 1px grey',
+    borderRightWidth:'50px',
+    borderLeftWidth: '0px'
+  }
   return (
     <div className="App">
       <div className='modalWindow' style={{display:displ}} onClick={()=>{setdispl('none')}}>
@@ -39,9 +37,10 @@ function App() {
           <img src={img} style={{display:displ,width:'300px',height:'300px',marginLeft:'50%'}}/>
         </div>
       </div>
+      <div style={{marginRight:'200px',marginLeft:'200px'}}>
       <div className='header'>
         <div className='Zagolovok'>
-          <p>Паровой двигатель</p>
+          <p style={{fontFamily:"PressStart"}}>Паровой двигатель</p>
         </div>
         <div className='avtor'><p>Nikolay Kutuzov</p></div>
       </div>
@@ -71,6 +70,26 @@ function App() {
           sethead('Ползу́н (также крейцкопф от нем. Kreuzkopf)')
           setimg(krezkopf)
        }}></div>
+       <div style={style3}>
+        <div className='heading'>  
+        Схема работы паровой машины двойного действия
+        </div>
+        <p>
+          Принцип действия поршневой паровой машины показан на иллюстрации. Работа поршня посредством штока, ползуна, шатуна и кривошипа передаётся главному валу, несущему маховик, который служит для снижения неравномерности вращения вала. Эксцентрик, сидящий на главном валу, с помощью эксцентриковой тяги приводит в движение золотник, управляющий впуском пара в полости цилиндра. Пар из цилиндра выпускается в атмосферу или поступает в конденсатор. Для поддержания постоянного числа оборотов вала при изменяющейся нагрузке паровые машины снабжаются центробежным регулятором, автоматически изменяющим сечение прохода пара, поступающего в паровую машину (дроссельное регулирование, показано на рисунке), или момент отсечки наполнения (количественное регулирование).</p>
+       </div>
+      </div>
+      <div className='main2'>
+        <img className='engine2' src={papiengine}/>
+        <div className='text' style={style3}>
+          <p className='heading'>Схема работы паровой машины Дени Папена</p>
+          <p>Нижняя часть гильзы наполнялась водой. При этом поршень находился в нижнем положение.<br/>
+              Гильза устанавливалась на печь.<br/>
+              Вода закипала, пар расширялся и созданным давлением толкал поршень вверх.<br/>
+              Избыток пара выводился в атмосферу, некоторая его часть попадала за поршень, через клапан, а поднятый поршень фиксировался стопором.<br/>
+              </p>
+        </div>
+       <img style={{height:'450px',alignSelf:'center',marginRight:'100px',borderRadius:'50px'}} src={denpapen}/>
+      </div>
       </div>
     </div>
   );
