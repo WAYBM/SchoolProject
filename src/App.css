@@ -1,8 +1,8 @@
 .header {
     display: flex;
     width: 100%;
-    height: 200px;
-    background-color: grey;
+    height: 100px;
+    background-image: url('water.jpg');
     justify-content: space-between;
     border-radius: 0% 0% 10% 10%;
 }
@@ -74,7 +74,7 @@ p{
     width: 100%;
     height: 100%;
     cursor: pointer;
-    z-index: 1;
+    z-index: 5;
 }
 .modalDiolog{
     position: absolute;
@@ -92,4 +92,23 @@ p{
     width: 100%;
     display: flex;
     justify-content: start;
+    flex-direction: row;
+}
+.main3{
+    margin-top: 100px;
+    font-size: xx-large;
+    height:500px
+}
+.opinion{
+    display: flex;
+    flex-direction: column;
+    font-size: xx-large;
+    background-image: url('water.jpg');
+    height: 300px;
+    width: 100%;
+    border-radius: 20% 20% 0% 0%;
+}
+.KPD{
+    display:flex;
+    flex-direction: column;
 }
