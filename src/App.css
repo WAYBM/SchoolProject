@@ -2,17 +2,27 @@
     display: flex;
     width: 100%;
     height: 100px;
-    background-image: url('water.jpg');
+    background-color: rgb(252, 184, 57);
     justify-content: space-between;
     border-radius: 0% 0% 10% 10%;
 }
 .heading{
     align-self: center;
-    justify-self: end;
+    justify-self: center;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 500;
     font-size: xx-large;
+    cursor: pointer;
     
+}
+.heading:hover{
+    align-self: center;
+    justify-self: end;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 550;
+    font-size:xx-large;
+    cursor: pointer;
+    transition: all 1s;
 }
 .engine2{
     width: 200px;
@@ -103,7 +113,7 @@ p{
     display: flex;
     flex-direction: column;
     font-size: xx-large;
-    background-image: url('water.jpg');
+    background-color:rgb(252, 184, 57) ;
     height: 300px;
     width: 100%;
     border-radius: 20% 20% 0% 0%;
