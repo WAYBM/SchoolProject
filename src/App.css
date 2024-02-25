@@ -4,7 +4,14 @@
     height: 100px;
     background-color: rgb(252, 184, 57);
     justify-content: space-between;
-    border-radius: 0% 0% 10% 10%;
+    border-radius: 0% 0% 0% 0%;
+}
+.atoms{
+    display: block;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    z-index: 0;
 }
 .heading{
     align-self: center;
@@ -121,4 +128,10 @@ p{
 .KPD{
     display:flex;
     flex-direction: column;
+}
+.atomsparent{
+    display: block;
+    transition: all 1s;
+    position: relative;
+    z-index: -1;
 }

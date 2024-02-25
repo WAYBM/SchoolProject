@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import wheelI from "./колесо.png";
 import engine from "./engine.gif";
 import regulator from "./regulator.png";
@@ -12,6 +12,7 @@ import val from "./val.jpg";
 import kpd1 from "./kpd 1.jpg";
 import kpd2 from "./kpd2.jpg";
 import water from "./water.jpg";
+import atom from './atom.png'
 
 function App() {
   const [displ, setdispl] = useState("none");
@@ -20,12 +21,14 @@ function App() {
   const [img, setimg] = useState(wheelI);
   const [info2, setinfo2] = useState(0);
   const [info3, setinfo3] = useState(0);
+  const [posx, setposx] = useState(0)
+  const ref = useRef(0)
 
-  const change = () => {
-    if (info2 == 0) {
-      setinfo2(285);
+  const change = (e) => {
+    if (e.currentTarget.parentNode.lastElementChild.style.height == '0px') {
+      e.currentTarget.parentNode.lastElementChild.style.height = 'auto'
     } else {
-      setinfo2(0);
+      e.currentTarget.parentNode.lastElementChild.style.height = '0px'
     }
   };
   const style3 = {
@@ -39,8 +42,35 @@ function App() {
     borderRightWidth: "50px",
     borderLeftWidth: "0px",
   };
+  const textstyle = {
+    transition: 'all 1s',
+    height: 0
+  }
+  useEffect(() => {
+    const scrollHeight = document.body.scrollHeight
+    let obj = ref.current
+    let atoms = document.querySelectorAll('.atoms')
+    const move = setInterval(() => {
+      for (let i = 0; i < atoms.length; i++) {
+        let keke = atoms[i].style.transform.replace(/[translateXY()px]/g, '')
+        if (Number(keke.substring(keke.indexOf(' '))) > scrollHeight - 300) {
+          atoms[i].remove()
+        }
+        atoms[i].style.transform = `translate(${Number(keke.substring(0, keke.indexOf(',')))}px,${Number(keke.substring(keke.indexOf(' '))) + 2}px)`
+      }
+    }, 100);
+    const int = setInterval(() => {
+      setposx(Math.floor(Math.random() * window.innerWidth - 100))
+      obj.insertAdjacentHTML('afterbegin', `<img src=${atom} style = transform:${`translate(${posx}px,0px)`} class = ${'atoms'}>`)
+    }, 4000);
+    return () => {
+      clearInterval(move)
+      clearInterval(int)
+    }
+  })
   return (
-    <div className="App">
+    <div className="App" style={{ zIndex: 5 }}>
+      <div className="atomsparent" ref={ref}></div>
       <div className="header">
         <div className="Zagolovok">
           <p style={{ fontFamily: "PressStart" }}>Паровой двигатель</p>
@@ -184,13 +214,13 @@ function App() {
             <div style={style3}>
               <div
                 className="heading"
-                onClick={() => {
-                  change();
+                onClick={(e) => {
+                  change(e)
                 }}
               >
                 Схема работы паровой машины двойного действия
               </div>
-              <p style={{ transition: "all 1s", height: `${info2}px` }}>
+              <p style={textstyle}>
                 Принцип действия поршневой паровой машины показан на
                 иллюстрации. Работа поршня посредством штока, ползуна, шатуна и
                 кривошипа передаётся главному валу, несущему маховик, который
@@ -209,17 +239,13 @@ function App() {
             <div style={style3}>
               <div
                 className="heading"
-                onClick={() => {
-                  if (info3 == 0) {
-                    setinfo3(285);
-                  } else {
-                    setinfo3(0);
-                  }
+                onClick={(e) => {
+                  change(e)
                 }}
               >
                 История создания
               </div>
-              <p style={{ transition: "all 1s", height: `${info3}px` }}>
+              <p style={textstyle}>
                 Универсальный паровой двигатель, пригодный для практической
                 эксплуатации, был создан шотландским изобретателем Джеймсом
                 Уаттом. Уатт, еще в детстве мастеривший модели машин, выбрал
@@ -240,8 +266,10 @@ function App() {
         <div className="main2">
           <img className="engine2" src={papiengine} />
           <div className="text" style={style3}>
-            <p className="heading">Схема работы паровой машины Дени Папена</p>
-            <p>
+            <p className="heading" onClick={(e) => {
+              change(e)
+            }}>Схема работы паровой машины Дени Папена</p>
+            <p style={textstyle}>
               Нижняя часть гильзы наполнялась водой. При этом поршень находился
               в нижнем положение.
               <br />
@@ -266,7 +294,7 @@ function App() {
             src={denpapen}
           />
         </div>
-        
+
         <div className="main3">
           <table>
             <tr>
