@@ -21,12 +21,13 @@ function App() {
   const [img, setimg] = useState(wheelI);
   const [info2, setinfo2] = useState(0);
   const [info3, setinfo3] = useState(0);
+  const [visible, setvisible] = useState(0)
   const [posx, setposx] = useState(0)
   const ref = useRef(0)
 
   const change = (e) => {
     if (e.currentTarget.parentNode.lastElementChild.style.height == '0px') {
-      e.currentTarget.parentNode.lastElementChild.style.height = 'auto'
+      e.currentTarget.parentNode.lastElementChild.style.height = '350px'
     } else {
       e.currentTarget.parentNode.lastElementChild.style.height = '0px'
     }
@@ -38,7 +39,10 @@ function App() {
     justifyItems: "center",
     alignItems: "center",
     flexDirection: "column",
-    border: "dashed 1px aqua",
+    borderRadius: '5%',
+    borderImage: 'linear-gradient(black, grey) 30',
+    borderWidth: '4px',
+    borderStyle: 'dashed',
     borderRightWidth: "50px",
     borderLeftWidth: "0px",
   };
@@ -61,7 +65,7 @@ function App() {
     }, 100);
     const int = setInterval(() => {
       setposx(Math.floor(Math.random() * window.innerWidth - 100))
-      obj.insertAdjacentHTML('afterbegin', `<img src=${atom} style = transform:${`translate(${posx}px,0px)`} class = ${'atoms'}>`)
+      obj.insertAdjacentHTML('afterbegin', `<img src=${atom} style = transform:${`translate(${posx}px,0px);transition:0.1s;opacity:50;`} class = ${'atoms'}>`)
     }, 4000);
     return () => {
       clearInterval(move)
@@ -70,12 +74,17 @@ function App() {
   })
   return (
     <div className="App" style={{ zIndex: 5 }}>
-      <div className="atomsparent" ref={ref}></div>
+      <div className="atomsparent" ref={ref} style={{opacity:visible}}></div>
       <div className="header">
         <div className="Zagolovok">
           <p style={{ fontFamily: "PressStart" }}>Паровой двигатель</p>
         </div>
         <div className="avtor">
+        <button className="btnatom" onClick={()=>{
+          let result = visible==0 ? 100:0
+          setvisible(result)
+          alert('atom visible none')
+        }}>ATOM</button>
           <p>Nikolay Kutuzov</p>
         </div>
       </div>
@@ -104,8 +113,8 @@ function App() {
       </div>
       <div
         style={{
-          marginRight: (window.innerWidth / 100) * 10,
-          marginLeft: (window.innerWidth / 100) * 10,
+          marginRight: (window.innerWidth / 100) * 12,
+          marginLeft: (window.innerWidth / 100) * 12,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -203,7 +212,6 @@ function App() {
               setimg(val);
             }}
           ></div>
-          {/* <img src={smoke} style={{color:'white'}}></img> */}
           <div
             style={{
               display: "flex",
@@ -318,26 +326,20 @@ function App() {
               <th>План дальнейшего развития сайта</th>
             </tr>
             <tr>
-              <td>• Добавление игры</td>
+              <td>• Работа над оформлением и userfrendly интерфейсом</td>
             </tr>
             <tr>
               <td>• Добавление больше информации</td>
-            </tr>
-            <tr>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
             </tr>
           </table>
         </div>
       </div>
       <div className="opinion">
-        <p style={{ alignSelf: "center", color: "white" }}>
+        <p style={{ alignSelf: "end", color: "white", marginRight:'100px' }}>
           Отзыв о нашем сайте
         </p>
         <div
-          style={{ display: "flex", flexDirection: "row", alignSelf: "center" }}
+          style={{ display: "flex", flexDirection: "row", alignSelf: "end" , marginRight:'50px'}}
         >
           <textarea
             cols="40"
@@ -350,12 +352,7 @@ function App() {
             }}
           ></textarea>
           <button
-            style={{
-              width: "200px",
-              height: "50px",
-              alignSelf: "center",
-              marginLeft: "50px",
-            }}
+            className="btnsend"
           >
             Отправить
           </button>
